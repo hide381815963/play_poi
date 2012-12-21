@@ -1,0 +1,21 @@
+import org.apache.poi.ss.usermodel._
+import java.io._
+
+object PoiTest {
+  def main(args: Array[String]) {
+    val filename = "test.xls"
+    val f = new File(filename)
+    val in = new FileInputStream(f)
+    val wb =  WorkbookFactory.create(in)
+    val sheet = wb.getSheetAt(0)
+    var row = sheet.getRow(1)
+    var cell = row.getCell(0)
+    cell.setCellValue("xx")
+    row = sheet.getRow(1)
+    cell = row.getCell(1)
+    cell.setCellValue(12)
+    val out = new FileOutputStream(f)
+    wb.write(out)
+    out.close
+  }
+}
